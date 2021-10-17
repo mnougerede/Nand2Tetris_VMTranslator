@@ -76,8 +76,15 @@ public class Parser {
     public String arg1() {
         if (!commandType().equals("C_RETURN")) {
             //TODO write if statements for return of arg1()
-
+            if (commandType()=="C_ARITHMETIC"){
+                return line;
+            }
+            else if (!commandType().equals("")){
+                String[] parts = line.split(" ");
+                return parts[1];
+            }
         }
+        else return "";
     }
     public int arg2() {
         if (commandType().equals("C_PUSH") || commandType().equals("C_POP") || commandType().equals("C_FUNCTION") || commandType().equals("C_CALL")) {
