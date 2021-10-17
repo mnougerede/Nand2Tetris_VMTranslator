@@ -43,19 +43,34 @@ public class Parser {
 
     }
     public String commandType() {
-        //TODO fill in commandType method for VM translator
-
-        //FROM HACKASS - returns the instruction type (A, C or L) - address, compute, label
-//        if (line.contains("=")||line.contains(";")){
-//            return "C"; // C Command
-//        }
-//        else if (line.startsWith("@")){
-//            return "A"; // A Command
-//        }
-//        else if (line.startsWith("(")){
-//            return "L"; // L Command
-//        }
-//        else return "";
+        if (line=="add" || line== "sub" || line== "lt" || line== "gt" || line== "eq" || line== "neg" || line== "or" || line== "and" || line== "not"){
+            return "C_ARITHMETIC";
+        }
+        else if(line.startsWith("push")){
+            return "C_PUSH";
+        }
+        else if(line.startsWith("pop")){
+            return "C_POP";
+        }
+        else if(line.startsWith("label")){
+            return "C_LABEL";
+        }
+        else if(line.startsWith("goto")){
+            return "C_GOTO";
+        }
+        else if(line.startsWith("if")){
+            return "C_IF";
+        }
+        else if(line.startsWith("function")){
+            return "C_FUNCTION";
+        }
+        else if(line=="return"){
+            return "C_RETURN";
+        }
+        else if(line.startsWith("call")){
+            return "C_CALL";
+        }
+        else return "";
 
     }
     public String arg1() {
