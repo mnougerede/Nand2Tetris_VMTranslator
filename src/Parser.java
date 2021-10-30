@@ -43,9 +43,11 @@ public class Parser {
 
     }
     public String commandType() {
-        if (line=="add" || line== "sub" || line== "lt" || line== "gt" || line== "eq" || line== "neg" || line== "or" || line== "and" || line== "not"){
+        if (
+                line.equals("add") || line.equals("sub") || line.equals("lt")
+                || line.equals("gt") || line.equals("eq") || line.equals("neg")
+                || line.equals("or") || line.equals("and") || line.equals("not"))
             return "C_ARITHMETIC";
-        }
         else if(line.startsWith("push")){
             return "C_PUSH";
         }
@@ -64,7 +66,7 @@ public class Parser {
         else if(line.startsWith("function")){
             return "C_FUNCTION";
         }
-        else if(line=="return"){
+        else if(line.equals("return")){
             return "C_RETURN";
         }
         else if(line.startsWith("call")){
@@ -74,22 +76,22 @@ public class Parser {
 
     }
     public String arg1() {
-        if (!commandType().equals("C_RETURN")) {
-            //TODO write if statements for return of arg1()
-            if (commandType()=="C_ARITHMETIC"){
-                return line;
-            }
-            else if (!commandType().equals("")){
-                String[] parts = line.split(" ");
-                return parts[1];
-            }
+
+        //TODO test arg1()
+        if (commandType().equals("C_ARITHMETIC")){
+            return line;
+        }
+        else if (!commandType().equals("")){
+            String[] parts = line.split(" ");
+            return parts[1];
         }
         else return "";
+
+
     }
     public int arg2() {
-        if (commandType().equals("C_PUSH") || commandType().equals("C_POP") || commandType().equals("C_FUNCTION") || commandType().equals("C_CALL")) {
-            //TODO write if statements for return of arg2()
-
-        }
+        //TODO test arg2
+        String[] parts = line.split(" ");
+        return Integer.parseInt(parts[2]);
     }
 }
